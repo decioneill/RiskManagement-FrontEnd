@@ -1,0 +1,26 @@
+﻿<h1>Project Management</h1>
+<table class="table table-striped">    
+    <tr>
+        <th style="width: 100%">Project Name</th>
+    </tr>
+    <tr *ngFor="let project of projects">
+        <td> 
+            <div class="row pl-1">
+                <span class="col" style="font-size: x-large;">{{project.name}}</span>
+            </div>
+            <div id="team" >
+                <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let team of project.team">
+                        <div class="row">
+                            <span class="col">{{team.name}}</span>
+                            <button (click)="remove(project.id, team.id)" class="btn btn-sm btn-danger btn-delete-user" style="width: fit-content;">Remove</button>
+                        </div>
+                    </li>
+                    <button (click)="add(project.id)" class="row btn btn-sm btn-success btn-add-user m-1" style="width: fit-content;" >
+                        Add
+                    </button>
+                </ul>
+            </div>
+        </td>
+    </tr>
+</table>
