@@ -3,7 +3,8 @@ import { first } from 'rxjs/operators';
 import { role } from '../models';
 import { AccountService, AlertService, ProjectService } from '../services';
 
-@Component({ templateUrl: 'projectList.component.html' })
+@Component({ templateUrl: 'projectList.component.html',
+styleUrls: ['projectList.component.css'] })
 export class ProjectListComponent implements OnInit {
     projects = null;
     user;
@@ -17,11 +18,11 @@ export class ProjectListComponent implements OnInit {
         this.projectService.getAll().subscribe(projects => this.projects = projects);  
     }
 
-    add(Pid: string){
+    addTeamMember(Pid: string){
         
     }
 
-    remove(Pid: string, Uid: string){
+    removeTeamMember(Pid: string, Uid: string){
         var hasRole = this.accountService.checkRole(role.Admin)
         .subscribe(hasRole => 
             {

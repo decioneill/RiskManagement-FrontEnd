@@ -7,6 +7,7 @@ import { JwtInterceptor, ErrorInterceptor } from './helpers';
 import { AppComponent } from './app.component';
 import { AlertComponent } from './alerts';
 import { HomeComponent } from './home';
+import * as $ from 'jquery';
 
 @NgModule({
     imports: [

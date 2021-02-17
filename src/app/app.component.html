@@ -3,6 +3,7 @@
     <div class="navbar-nav">
         <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
         <a *ngIf="user.riskManager || user.admin" class="nav-item nav-link" routerLink="/user-management" routerLinkActive="active">User Management</a>
+        <a *ngIf="user.admin" class="nav-item nav-link" routerLink="/project-management" routerLinkActive="active">Project-Management</a>
     </div>
     <button type="button" class="btn btn-danger ml-auto" (click)="logout()">Logout</button>
 </nav>
