@@ -1,9 +1,9 @@
 ﻿<!-- navigation bar -->
 <nav *ngIf="user" class="navbar navbar-expand navbar-dark mr-auto bg-dark" >
     <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
-        <a *ngIf="user.riskManager || user.admin" class="nav-item nav-link" routerLink="/user-management" routerLinkActive="active">User Management</a>
-        <a *ngIf="user.admin" class="nav-item nav-link" routerLink="/project-management" routerLinkActive="active">Project-Management</a>
+        <a class="nav-item nav-link mx-1" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        <a *ngIf="user.riskManager || user.admin" class="nav-item nav-link mx-1" routerLink="/edit-users" routerLinkActive="active">Users</a>
+        <a *ngIf="user.admin" class="nav-item nav-link mx-1" routerLink="/edit-projects" routerLinkActive="active">Projects</a>
     </div>
     <button type="button" class="btn btn-danger ml-auto" (click)="logout()">Logout</button>
 </nav>

@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Project } from '../models/project';
+import { User } from '../models/user';
 
 @Injectable({ providedIn: 'root' })
 export class ProjectService {
@@ -22,6 +23,14 @@ export class ProjectService {
         return this.projectSubject.value;
     }
 
+    createProject(name: Project){
+        return this.http.post<string>(`${environment.apiUrl}/${this.apiDir}/createproject`, name);
+    }
+
+    deleteProject(id: string){
+        return this.http.delete(`${environment.apiUrl}/${this.apiDir}/${id}`);        
+    }
+
     getAll() {
         var list = this.http.get<Project[]>(`${environment.apiUrl}/${this.apiDir}`)
         return list;
@@ -31,6 +40,11 @@ export class ProjectService {
         return this.http.get<Project>(`${environment.apiUrl}/${this.apiDir}/${id}`);
     }
 
-    remove(Pid: string, Uid: string) {
+    removeTeamMember(pid: string, uid: string) {
+        return this.http.delete(`${environment.apiUrl}/${this.apiDir}/${pid}/${uid}`);        
+    }
+
+    getNonMembers(pid: string){
+        return this.http.get<Map<string, string>>(`${environment.apiUrl}/${this.apiDir}/${pid}/getnonmembers`)
     }
 }

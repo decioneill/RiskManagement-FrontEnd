@@ -1,28 +1,76 @@
-﻿<h1>Project Management</h1>
-<table class="table table-striped bg-white">    
+﻿<h1>Add/Edit Projects</h1>
+<table class="table table-striped">    
     <tr>
         <th style="width: 100%">Project Name</th>
     </tr>
     <tr *ngFor="let project of projects; let i = index">
         <td> 
             <div class="row p-1">
-                <button class="btn btn-white col noFocus text-left" type="button" data-toggle="collapse" [attr.data-target]="'#team' + i" style="width: auto; outline: 0;">
-                    <span class="col" style="font-size: x-large; width: fit-content;">{{project.name}}</span>
+                <button class="btn btn-white col noFocus text-left" type="button" data-toggle="collapse" [attr.data-target]="'#team' + i" style="width: auto;  outline: 0;">
+                    <span class="text-primary" style="font-size: x-large; width: fit-content;">{{project.name}}</span>
                 </button>
+                <button (click)="deleteProject(project.id)" class="btn btn-sm btn-danger btn-project" style="width: fit-content; height: fit-content; align-self: center;">Delete Project</button>
             </div>
-            <div id="team{{i}}" class="collapse in" >
-                <ul class="list-group">
+            <div id="team{{i}}" class="collapse in bg-info p-2 rounded" >
+                <h5 class="p-1" style="color: white;">Team Members</h5>
+                <ul class="list-group rounded bg-white">
                     <li class="list-group-item" *ngFor="let team of project.team">
                         <div class="row">
                             <span class="col">{{team.name}}</span>
-                            <button (click)="removeTeamMember(project.id, team.id)" class="btn btn-sm btn-danger btn-delete-user" style="width: fit-content;">Remove</button>
+                            <button (click)="removeTeamMember(project.id, team.userId)" class="btn btn-sm btn-danger btn-delete-user" style="width: fit-content;">Remove</button>
                         </div>
                     </li>
-                    <button (click)="addTeamMember(project.id)" class="row btn btn-sm btn-success btn-add-user m-1" style="width: fit-content;" >
-                        Add
+                    <!--  -->
+                    <button (click)="getNonMembers(project.id)" class="row btn btn-sm btn-success btn-add-user border rounded m-1" data-toggle="modal" [attr.data-target]="'#exampleModal' + i" style="width: fit-content;" >
+                        Add Team Member
                     </button>
+                    <!-- Add User Modal Box-->
+                    <div class="modal fade" id="exampleModal{{i}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Add New Team Member</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                                <label for="exampleFormControlSelect2">Select Users</label>
+                                <ul class="nonMembers list-unstyled">
+                                    <li *ngFor="let user of nonMembers">
+                                        <span>{{user.email}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-primary" data-dismiss="modal">Add Team Member</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- End Add User Modal-->
                 </ul>
             </div>
         </td>
     </tr>
 </table>
+<div id="newProjectContainer" class="container">
+    <button class="btn text-left noFocus btn-primary rounded" type="button" data-toggle="collapse" [attr.data-target]="'#addForm'" style="width: auto;">
+        <span class="col" style="font-size: x-large; width: fit-content;">New Project</span>
+    </button>
+    <form id="addForm" class="collapse in bg-success" [formGroup]="form" (ngSubmit)="addProject()">
+        <div class="form-group p-3">
+            <label style="font-size: larger; color: white;" for="name">Project Name</label>
+            <div class="row pl-3 px-3">
+            <input type="text" formControlName="name" class="form-control col mr-3" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                <div class="form-group">
+                    <button class="btn btn-primary">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

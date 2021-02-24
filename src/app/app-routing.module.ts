@@ -9,8 +9,8 @@ const projectsModule = () => import('./projectManagement/projects.module').then(
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-    { path: 'user-management', loadChildren: usersModule, canActivate: [RiskManagerAuth]},    
-    { path: 'project-management', loadChildren: projectsModule, canActivate: [AdminAuthGuard]},
+    { path: 'edit-users', loadChildren: usersModule, canActivate: [RiskManagerAuth]},    
+    { path: 'edit-projects', loadChildren: projectsModule, canActivate: [AdminAuthGuard]},
     { path: 'account', loadChildren: accountModule },
 ];
 
