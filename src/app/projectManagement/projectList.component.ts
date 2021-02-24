@@ -1,7 +1,6 @@
-﻿import { stringify } from '@angular/compiler/src/util';
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first, map } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 import { role } from '../models';
 import { AccountService, AlertService, ProjectService } from '../services';
 
@@ -19,6 +18,7 @@ export class ProjectListComponent implements OnInit {
         private alertService: AlertService ){}
         loading = false;
         submitted = false;
+        selectedUsers = [];
     
     ngOnInit() {
         this.user = this.accountService.userValue
@@ -70,31 +70,57 @@ export class ProjectListComponent implements OnInit {
     {
         var hasRole = this.accountService.checkRole(role.Admin)
         .subscribe(hasRole => 
+        {
+            if(hasRole)
             {
-                if(hasRole)
-                {
-                    this.projectService.deleteProject(pid)
-                    .pipe(first())
-                    .subscribe({
-                        next: () => {
-                            this.alertService.success('Delete successful',{ autoClose: true});
-                            this.projectService.getAll().subscribe(projects => this.projects = projects);
-                        },
-                        error: error => {
-                            this.alertService.error(error,{ autoClose: true});
-                            this.loading = false;
-                        }
-                    });
-                }
-                else
-                {
-                    this.alertService.error("Not Authorized",{ autoClose: true})
-                }
-                this.loading = false;
-            });
+                this.projectService.deleteProject(pid)
+                .pipe(first())
+                .subscribe({
+                    next: () => {
+                        this.alertService.success('Delete successful',{ autoClose: true});
+                        this.projectService.getAll().subscribe(projects => this.projects = projects);
+                    },
+                    error: error => {
+                        this.alertService.error(error,{ autoClose: true});
+                        this.loading = false;
+                    }
+                });
+            }
+            else
+            {
+                this.alertService.error("Not Authorized",{ autoClose: true})
+            }
+            this.loading = false;
+        });
     }
 
-    addTeamMember(pid: string){
+    addTeamMembers(pid: string)
+    {
+        var hasRole = this.accountService.checkRole(role.Admin)
+        .subscribe(hasRole => 
+        {
+            if(hasRole)
+            {
+                this.projectService.addTeamMembers(pid, this.selectedUsers)
+                .pipe(first())
+                .subscribe({
+                    next: () => {
+                        this.alertService.success('Added Team Members successfully',{ autoClose: true});
+                        this.selectedUsers = [];
+                        this.projectService.getAll().subscribe(projects => this.projects = projects);
+                    },
+                    error: error => {
+                        this.alertService.error(error,{ autoClose: true});
+                        this.loading = false;
+                    }
+                });
+            }
+            else
+            {
+                this.alertService.error("Not Authorized",{ autoClose: true})
+            }
+            this.loading = false;
+        });
     }
 
     removeTeamMember(pid: string, uid: string){

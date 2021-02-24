@@ -1,12 +1,13 @@
 ﻿import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule} from '@angular/forms';
+import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { JwtInterceptor, ErrorInterceptor } from './helpers';
 import { AppComponent } from './app.component';
 import { AlertComponent } from './alerts';
 import { HomeComponent } from './home';
+import { NgSelectModule } from '@ng-select/ng-select';
 import * as $ from 'jquery';
 
 @NgModule({
@@ -14,6 +15,8 @@ import * as $ from 'jquery';
         BrowserModule,
         FormsModule,
         HttpClientModule,
+        NgSelectModule,
+        ReactiveFormsModule,
         AppRoutingModule
     ],
     declarations: [
@@ -28,3 +31,4 @@ import * as $ from 'jquery';
     bootstrap: [AppComponent]
 })
 export class AppModule { };
+export class ViewsModule { };

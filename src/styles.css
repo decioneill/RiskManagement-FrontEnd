@@ -1,9 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
 a {
   cursor: pointer
 }
 
 .app-container {
+  width: 100%;
   min-height: 320px;
   overflow: hidden;
 }
@@ -12,4 +14,12 @@ a {
   width: 40px;
   text-align: center;
   box-sizing: content-box;
+}
+
+.container {
+  max-width: none;
+}
+
+.container-n{
+  max-width: 960px;
 }

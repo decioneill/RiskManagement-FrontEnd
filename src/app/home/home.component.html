@@ -1,13 +1,13 @@
-<div class="card p-2">
+<div class="card">
     <div class="container">
-        <div class="card-header"><h4>Welcome {{user.email}}</h4></div>
+        <div class="card-header "><h4>Welcome {{user.email}}</h4></div>
         <div class="card-body">
             <p *ngIf="user.admin" class="card-text" style="color:green">You are an Administrator</p>
             <p *ngIf="!user.admin" class="card-text" style="color:red">You are <span style="font-weight: bold;">NOT</span> an Administrator</p>
             <p *ngIf="user.riskManager" class="card-text" style="color:Green">You are a Risk Manager</p>
             <p *ngIf="!user.riskManager" class="card-text" style="color:red">You are <span style="font-weight: bold;">NOT</span> a Risk Manager</p>
             <div>
-                <button *ngIf="user.riskManager || user.admin" type="button" class="btn btn-primary" routerLink="/user-management" >User Management</button>
+                <button *ngIf="user.riskManager || user.admin" type="button" class="btn btn-primary" routerLink="/edit-users">User Management</button>
             </div>
         </div>
     </div>

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LayoutComponent } from './layout.component';
+import { LayoutComponent } from '../layout.component';
 import { UserListComponent } from './userList.component';
 import { AddEditComponent } from './add-edit.component';
 import { AdminAuthGuard } from '../helpers';

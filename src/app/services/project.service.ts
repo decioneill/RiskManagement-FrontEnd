@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
@@ -46,5 +46,9 @@ export class ProjectService {
 
     getNonMembers(pid: string){
         return this.http.get<Map<string, string>>(`${environment.apiUrl}/${this.apiDir}/${pid}/getnonmembers`)
+    }
+
+    addTeamMembers(pid: string, users: Array<string>){        
+        return this.http.post(`${environment.apiUrl}/${this.apiDir}/${pid}/createTeamMembers`, users);
     }
 }

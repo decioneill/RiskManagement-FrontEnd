@@ -1,28 +1,29 @@
-﻿<h1>Add/Edit Users</h1>
-<table class="table table-striped">    
-    <tr>
-        <th style="width: 60%">Email</th>
-        <th style="width: 15%" class="text-center">Risk Manager</th>
-        <th *ngIf="user.admin" class="text-center" style="width: 15%">Admin</th>
-        <th style="width: 10%"></th>
-    </tr>
-    <tr *ngFor="let listuser of users">
-        <td>{{listuser.email}}</td>
-        <td class="text-center">{{listuser.riskManager}}</td>
-        <td *ngIf="user.admin" class="text-center">{{listuser.admin}}</td>
-        <td *ngIf="user.admin" style="white-space: nowrap">
-            <a routerLink="edit/{{listuser.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
-            <button (click)="deleteUser(listuser.id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="listuser.isDeleting">
-                <span *ngIf="listuser.isDeleting" class="spinner-border spinner-border-sm"></span>
-                <span *ngIf="!listuser.isDeleting">Delete</span>
-            </button>
-        </td>
-    </tr>
-    <tr *ngIf="!users">
-        <td colspan="4" class="text-center">
-            <span class="spinner-border spinner-border-lg align-center"></span>
-        </td>
-    </tr>
-    <a *ngIf="user.admin" routerLink="add" class="btn btn-sm btn-success mb-2">Add New User</a>
-</table>
-
+﻿<div class="container-n">
+    <h1>Add/Edit Users</h1>
+    <table class="table table-striped">    
+        <tr>
+            <th style="width: 60%">Email</th>
+            <th style="width: 15%" class="text-center">Risk Manager</th>
+            <th *ngIf="user.admin" class="text-center" style="width: 15%">Admin</th>
+            <th style="width: 10%"></th>
+        </tr>
+        <tr *ngFor="let listuser of users">
+            <td>{{listuser.email}}</td>
+            <td class="text-center">{{listuser.riskManager}}</td>
+            <td *ngIf="user.admin" class="text-center">{{listuser.admin}}</td>
+            <td *ngIf="user.admin" style="white-space: nowrap">
+                <a routerLink="edit/{{listuser.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
+                <button (click)="deleteUser(listuser.id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="listuser.isDeleting">
+                    <span *ngIf="listuser.isDeleting" class="spinner-border spinner-border-sm"></span>
+                    <span *ngIf="!listuser.isDeleting">Delete</span>
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="!users">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+        <button *ngIf="user.admin" routerLink="add" class="btn text-left btn-primary rounded" style="font-size: larger">Add New User</button>
+    </table>
+</div>
