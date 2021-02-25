@@ -51,4 +51,8 @@ export class ProjectService {
     addTeamMembers(pid: string, users: Array<string>){        
         return this.http.post(`${environment.apiUrl}/${this.apiDir}/${pid}/createTeamMembers`, users);
     }
+
+    AddRemoveLeaderRole(pid: string, teamid: string){
+        return this.http.get(`${environment.apiUrl}/${this.apiDir}/${pid}/${teamid}/switchleaderrole`);
+    }
 }

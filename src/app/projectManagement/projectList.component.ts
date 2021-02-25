@@ -2,6 +2,7 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { role } from '../models';
+import { Project } from '../models/project';
 import { AccountService, AlertService, ProjectService } from '../services';
 
 @Component({ templateUrl: 'projectList.component.html',
@@ -66,19 +67,25 @@ export class ProjectListComponent implements OnInit {
         }
     }
 
-    deleteProject(pid: string)
+    deleteProject(project: any)
     {
+        var pid = project.id;
         var hasRole = this.accountService.checkRole(role.Admin)
         .subscribe(hasRole => 
         {
-            if(hasRole)
+            if(hasRole && confirm(`Are you sure you wish to remove Project "${project.name}"?`))
             {
                 this.projectService.deleteProject(pid)
                 .pipe(first())
                 .subscribe({
                     next: () => {
                         this.alertService.success('Delete successful',{ autoClose: true});
-                        this.projectService.getAll().subscribe(projects => this.projects = projects);
+                        // splice removes element without refreshing
+                        var index: number = this.projects.indexOf(project);
+                        if(index !== -1)
+                        {
+                            this.projects.splice(index, 1);
+                        }
                     },
                     error: error => {
                         this.alertService.error(error,{ autoClose: true});
@@ -123,30 +130,75 @@ export class ProjectListComponent implements OnInit {
         });
     }
 
-    removeTeamMember(pid: string, uid: string){
+    promote(pid: string, user: any, project: Project){
         var hasRole = this.accountService.checkRole(role.Admin)
         .subscribe(hasRole => 
+        {
+            if(hasRole)
             {
-                if(hasRole)
+                var proceed;
+                if(user.teamLeader){
+                    proceed = confirm(`Are you sure you wish to demote user ${user.name}? from Team Leader?`)
+                }
+                else{
+                    proceed = confirm(`Are you sure you wish to promote user ${user.name} to Team Leader?`)
+                }
+                if(proceed)
                 {
-                    this.projectService.removeTeamMember(pid, uid)
-                    .pipe(first())
+                    this.projectService.AddRemoveLeaderRole(pid, user.userId)
                     .subscribe({
                         next: () => {
-                            this.alertService.success('Team Member removed successfully',{ autoClose: true});
-                            this.projectService.getAll().subscribe(projects => this.projects = projects);
+                            user.teamLeader = !user.teamLeader;
+                            project.team = project.team.sort((x, y) => {
+                                if(x.teamLeader < y.teamLeader) { return 1; }
+                                if(x.teamLeader > y.teamLeader){ return -1; }
+                                return 0;
+                            });
                         },
-                        error: error => {
+                        error: error => 
+                        {
                             this.alertService.error(error,{ autoClose: true});
                             this.loading = false;
                         }
+
                     });
                 }
-                else
-                {
-                    this.alertService.error("Not Authorized",{ autoClose: true})
-                }
-                this.loading = false;
-            });
+            }
+        });
+    }
+
+    removeTeamMember(project: any, user: any){
+        var pid, uid: string;
+        uid = user.userId;
+        pid = project.id;
+        var hasRole = this.accountService.checkRole(role.Admin)
+        .subscribe(hasRole => 
+        {
+            if(hasRole && confirm(`Are you sure you wish to remove user ${user.name} as a Team Member?`))
+            {
+                this.projectService.removeTeamMember(pid, uid)
+                .pipe(first())
+                .subscribe({
+                    next: () => {
+                        this.alertService.success('Team Member removed successfully',{ autoClose: true});
+                        // splice removes element without refreshing
+                        var index: number = project.team.indexOf(user);
+                        if(index !== -1)
+                        {
+                            project.team.splice(index, 1);
+                        }
+                    },
+                    error: error => {
+                        this.alertService.error(error,{ autoClose: true});
+                        this.loading = false;
+                    }
+                });
+            }
+            else
+            {
+                this.alertService.error("Not Authorized",{ autoClose: true})
+            }
+            this.loading = false;
+        });
     }
 }

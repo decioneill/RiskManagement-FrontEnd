@@ -11,7 +11,7 @@ export class TeamMember {
     projectId: number;
 
     // Name
-    Name: string;
+    name: string;
 
     // Name
     teamLeader: boolean;
