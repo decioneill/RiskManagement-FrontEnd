@@ -55,4 +55,8 @@ export class ProjectService {
     AddRemoveLeaderRole(pid: string, teamid: string){
         return this.http.get(`${environment.apiUrl}/${this.apiDir}/${pid}/${teamid}/switchleaderrole`);
     }
+
+    getUserProjects(uid: string){
+        return this.http.get(`${environment.apiUrl}/${this.apiDir}/${uid}/userprojects`);
+    }
 }

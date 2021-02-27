@@ -7,22 +7,24 @@
                     <button class="btn btn-white col noFocus text-left" type="button" data-toggle="collapse" [attr.data-target]="'#team' + i" style="width: auto;  outline: 0;">
                         <span class="text-primary" style="font-size: x-large; width: fit-content;">{{project.name}}</span>
                     </button>
-                    <button (click)="deleteProject(project)" class="btn btn-sm btn-danger btn-project" style="width: fit-content; height: fit-content; align-self: center;">Delete Project</button>
+                    <button (click)="deleteProject(project)" class="btn btn-sm btn-danger btn-project mr-2" style="width: fit-content; height: fit-content; align-self: center; font-size: 1em;">Delete Project</button>
                 </div>
                 <div id="team{{i}}" class="collapse in bg-info p-2 rounded" >
                     <h5 class="p-1" style="color: white;">Team Members</h5>
                     <ul class="list-group rounded bg-white">
-                        <li class="list-group-item" *ngFor="let team of project.team">
-                            <div class="row align-center">
-                                <span class="col width-auto">
-                                    {{team.name}}
-                                        <span class="width-auto bg-secondary rounded py-1 px-2 mx-2 text-white" style="font-weight: bold; font-size: medium;" *ngIf="team.teamLeader">Leader</span>
-                                </span>
-                                <button (click)="promote(project.id, team, project)" class="btn btn-sm btn-delete-user" style="width: fit-content;">
-                                    <img *ngIf="team.teamLeader" class="rounded" style="height: 24px;" src="../../assets/DownArrow.png" />
-                                    <img *ngIf="!team.teamLeader" class="rounded" style="height: 24px;" src="../../assets/UpArrow.png" />
-                                </button>
-                                <button (click)="removeTeamMember(project, team)" class="btn btn-sm btn-danger btn-delete-user" style="width: fit-content;">Remove</button>
+                        <li class="list-group-item py-1 px-2" style="height: fit-content;" *ngFor="let team of project.team">
+                            <div class="row justify-content-between align-items-center">
+                                <div class="col-auto">
+                                    <span >{{team.name}}<span class="badge badge-secondary mx-2">Leader</span>
+                                    </span>
+                                </div>
+                                <div class="col-auto">
+                                    <button (click)="promote(project.id, team, project)" class="btn" style="width: fit-content;">
+                                        <img *ngIf="team.teamLeader" class="rounded border border-dark" style="height: 24px;" src="../../assets/DownArrow.png" />
+                                        <img *ngIf="!team.teamLeader" class="rounded border border-dark" style="height: 24px;" src="../../assets/UpArrow.png" />
+                                    </button>
+                                    <button (click)="removeTeamMember(project, team)" class="btn btn-danger" style="width: fit-content; height: fit-content;">Remove</button>
+                                </div>
                             </div>
                         </li>
                         <button (click)="getNonMembers(project.id)" class="row btn btn-sm btn-success btn-add-user border rounded m-1" data-toggle="modal" [attr.data-target]="'#exampleModal' + i" style="width: fit-content;" >

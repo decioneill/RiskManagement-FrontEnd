@@ -8,7 +8,9 @@ import { AppComponent } from './app.component';
 import { AlertComponent } from './alerts';
 import { HomeComponent } from './home';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import * as $ from 'jquery';
+;
 
 @NgModule({
     imports: [
@@ -17,7 +19,8 @@ import * as $ from 'jquery';
         HttpClientModule,
         NgSelectModule,
         ReactiveFormsModule,
-        AppRoutingModule
+        AppRoutingModule,
+        BrowserAnimationsModule,
     ],
     declarations: [
         AppComponent,

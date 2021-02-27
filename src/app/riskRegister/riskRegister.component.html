@@ -1,0 +1,20 @@
+﻿<div class="container-n">
+    <h1>Risk Registry</h1>
+<!-- List group -->
+<div class="row">
+    <div class="col-auto list-group width-auto" id="myList" role="tablist">
+        <a *ngFor="let project of projects; let i = index; let first = first;" class="list-group-item list-group-item-action" 
+        data-toggle="list" href="#content-project{{i}}" role="tab">{{project.name}}</a>
+    </div>
+  
+  <!-- Tab panes -->
+    <div class="col tab-content">
+        <div class="tab-pane active" id="default" role="tabpanel">
+            <label>Please select a Risk Registry</label>
+        </div>
+        <div *ngFor="let project of projects; let i = index" class="tab-pane" id="content-project{{i}}" role="tabpanel">
+            <h3>{{project.name}}</h3>
+            <app-risk-register-list [project2]="project" ></app-risk-register-list>
+        </div>
+    </div>
+</div>
