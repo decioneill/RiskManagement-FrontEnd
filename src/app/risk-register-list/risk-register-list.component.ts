@@ -1,18 +1,24 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Project } from '../models/project';
+import { ProjectService } from '../services';
 
 @Component({
   selector: 'app-risk-register-list',
   templateUrl: './risk-register-list.component.html',
   styleUrls: ['./risk-register-list.component.css']
 })
-export class RiskRegisterListComponent implements OnInit {
+export class RiskRegisterListComponent implements OnChanges {
+  @Input() currentProject: Project;
+  hasSelected: boolean;
 
-  @Input() project2: Project;
+  constructor(public projectService: ProjectService) { }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  ngOnInit(){  
+    this.currentProject = new Project()
+  }
+  
+  ngOnChanges(changes: SimpleChanges) {
+    this.currentProject = changes.currentProject.currentValue;
   }
 
 }

@@ -1,1 +1,28 @@
-<p>risk-register-list works!</p>
+<div *ngIf="!currentProject.id">
+    <p>Please Select a Project</p>
+</div>
+<div *ngIf="currentProject.id">
+    <h2>{{currentProject.name}}</h2>
+    <div class="list-group border p-2">
+        <label class="list-group-item">
+          <input class="form-check-input me-1" type="checkbox" value="">
+          First checkbox
+        </label>
+        <label class="list-group-item">
+          <input class="form-check-input me-1" type="checkbox" value="">
+          Second checkbox
+        </label>
+        <label class="list-group-item">
+          <input class="form-check-input me-1" type="checkbox" value="">
+          Third checkbox
+        </label>
+        <label class="list-group-item">
+          <input class="form-check-input me-1" type="checkbox" value="">
+          Fourth checkbox
+        </label>
+        <label class="list-group-item">
+          <input class="form-check-input me-1" type="checkbox" value="">
+          Fifth checkbox
+        </label>
+      </div>
+</div>
