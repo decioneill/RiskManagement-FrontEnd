@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Project } from '../models/project';
-import { User } from '../models/user';
 
 @Injectable({ providedIn: 'root' })
 export class ProjectService {

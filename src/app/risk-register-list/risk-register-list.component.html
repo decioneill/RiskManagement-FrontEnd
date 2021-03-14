@@ -1,28 +1,15 @@
 <div *ngIf="!currentProject.id">
-    <p>Please Select a Project</p>
+    <h3>Please Select a Project</h3>
 </div>
 <div *ngIf="currentProject.id">
-    <h2>{{currentProject.name}}</h2>
-    <div class="list-group border p-2">
-        <label class="list-group-item">
-          <input class="form-check-input me-1" type="checkbox" value="">
-          First checkbox
-        </label>
-        <label class="list-group-item">
-          <input class="form-check-input me-1" type="checkbox" value="">
-          Second checkbox
-        </label>
-        <label class="list-group-item">
-          <input class="form-check-input me-1" type="checkbox" value="">
-          Third checkbox
-        </label>
-        <label class="list-group-item">
-          <input class="form-check-input me-1" type="checkbox" value="">
-          Fourth checkbox
-        </label>
-        <label class="list-group-item">
-          <input class="form-check-input me-1" type="checkbox" value="">
-          Fifth checkbox
-        </label>
+    <h2 class="text-center">{{currentProject.name}}</h2>
+    <hr style="color: rgba(0,0,0,.125);" class="mb-0"/>
+    <div class="list-group p-2">
+      <div *ngIf="(riskService.risklist | async)?.length === 0">
+        <h3>There are no outstanding Risks</h3>
       </div>
+        <div *ngFor="let risk of riskService.risklist | async; let i = index;" class="list-group-item border p-0 bg-light">
+          <app-risk-list-item [simpleRisk]="risk"></app-risk-list-item>
+        </div>
+    </div>  
 </div>

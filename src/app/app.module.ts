@@ -9,7 +9,8 @@ import { AlertComponent } from './alerts';
 import { HomeComponent } from './home';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import * as $ from 'jquery';
+import * as $ from 'jquery';;
+import { RiskListItemComponent } from './risk-register-list/risk-list-item/risk-list-item.component'
 ;
 
 @NgModule({
@@ -20,12 +21,12 @@ import * as $ from 'jquery';
         NgSelectModule,
         ReactiveFormsModule,
         AppRoutingModule,
-        BrowserAnimationsModule,
+        BrowserAnimationsModule
     ],
     declarations: [
         AppComponent,
         AlertComponent,
-        HomeComponent,
+        HomeComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -23,3 +23,7 @@ a {
 .container-n{
   max-width: 960px;
 }
+
+.v-divide-left {
+  border-left: 1px solid rgba(0,0,0,.125);
+}

@@ -4,7 +4,7 @@ import { CommonModule} from '@angular/common';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { RiskRegisterComponent } from './riskRegister.component';
 import { RiskRegisterRoutingModule } from './RiskRegister-routing.module';
-import { RiskRegisterListComponent } from '../risk-register-list';
+import { RiskListItemComponent, RiskRegisterListComponent } from '../risk-register-list';
 
 @NgModule({
     imports: [
@@ -16,7 +16,8 @@ import { RiskRegisterListComponent } from '../risk-register-list';
     ],
     declarations: [        
         RiskRegisterComponent,
-        RiskRegisterListComponent
+        RiskRegisterListComponent,
+        RiskListItemComponent
     ]
 })
 export class RiskRegisterModule { }

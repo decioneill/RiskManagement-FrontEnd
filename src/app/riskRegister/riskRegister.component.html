@@ -1,18 +1,14 @@
-﻿<div class="container-n">
-    <h1>Risk Registry</h1>
+﻿<div class="container px-0">
+    <h1 class="text-center">Risk Registry</h1>
+    <hr/>
       
-    <div class="row h-100">
-          <div class="list-group" id="list-tab" role="tablist" style="max-width: 300px; overflow-x: hidden;">
+    <div class="row mx-1 p-1 text-center border rounded bg-white h-100">
+          <div class="list-group pr-1" id="list-tab" role="tablist" style="max-width: 300px; overflow-x: hidden;">
             <a [ngClass]="{'active': project === selectedProject}" 
                 *ngFor="let project of projectService.projects | async; let i = index;" 
                 [ngValue]="project" class="list-group-item list-group-item-action" 
                 data-bs-toggle="list" role="tab" (click)="onTabClick(project)">{{project.name}}</a>
           </div>
-        <!--
-        <select class="selectpicker w-auto" data-style="btn-info" size="20" style="overflow-y: auto;" [(ngModel)]="selectedProject">
-            <option *ngFor="let project of projectService.projects | async; let i = index; let first as isFirst;" [ngValue]="project" >{{project.name}}</option>
-        </select>-->  
-
-        <app-risk-register-list class="col" id="riskRegisterList" [currentProject]="selectedProject"></app-risk-register-list>
+        <app-risk-register-list class="col v-divide-left p-0" style="min-height: 800px;" id="riskRegisterList" [currentProject]="selectedProject"></app-risk-register-list>
     </div>
 </div>
