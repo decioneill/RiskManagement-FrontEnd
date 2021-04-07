@@ -9,8 +9,8 @@ import { AlertComponent } from './alerts';
 import { HomeComponent } from './home';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import * as $ from 'jquery';;
-import { RiskListItemComponent } from './risk-register-list/risk-list-item/risk-list-item.component'
+import * as $ from 'jquery';import { AlertService } from './services';
+;
 ;
 
 @NgModule({

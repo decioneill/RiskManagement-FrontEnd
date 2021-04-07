@@ -1,7 +1,10 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Observable } from 'rxjs';
+import { first } from 'rxjs/operators';
+import { role, SimpleRisk } from '../models';
 import { Project } from '../models/project';
-import { AccountService, RiskService } from '../services';
+import { Risk } from '../models/risk';
+import { AccountService, AlertService, RiskService } from '../services';
 
 @Component({
   selector: 'app-risk-register-list',
@@ -14,7 +17,7 @@ export class RiskRegisterListComponent implements OnChanges {
   user;
   risks;
 
-  constructor(public accountService: AccountService, public riskService: RiskService) { }
+  constructor(public accountService: AccountService, public riskService: RiskService, public alertService: AlertService) { }
 
   ngOnInit(){  
     this.user = this.accountService.userValue;
@@ -23,6 +26,32 @@ export class RiskRegisterListComponent implements OnChanges {
   
   ngOnChanges(changes: SimpleChanges) {
     this.currentProject = changes.currentProject.currentValue;
-    this.riskService.GetSimpleRisksByUserId(this.currentProject.id.toString(), this.user.id.toString())
+    this.riskService.getSimpleRisksByUserId(this.currentProject.id.toString(), this.user.id.toString())
+  }
+
+  deleteRisk(risk: Risk){
+    var hasRole = this.accountService.checkRole(role.Admin)
+      .subscribe(hasRole => 
+      {
+        if(hasRole && confirm(`Are you sure you wish to Delete Risk "${risk.shortDescription}"?`))
+        {
+          this.riskService.deleteRisk(risk.id)
+          .pipe(first())
+          .subscribe({
+              next: () => {
+                this.alertService.clear();
+                this.alertService.success('Delete successful',{ autoClose: true});
+                this.riskService.getSimpleRisksByUserId(this.currentProject.id.toString(), this.user.id.toString())
+              },
+              error: error => {
+                this.alertService.error(error,{ autoClose: true});
+              }
+          });
+        }
+        else
+        {
+          this.alertService.error("Not Authorized",{ autoClose: true})
+        }
+      });
   }
 }

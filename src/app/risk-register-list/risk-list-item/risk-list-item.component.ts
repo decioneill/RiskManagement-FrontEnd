@@ -13,5 +13,4 @@ export class RiskListItemComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
