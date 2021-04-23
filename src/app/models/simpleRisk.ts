@@ -12,4 +12,7 @@ export class SimpleRisk {
 
     // residual risk score
     residualRiskScore: number;
+    
+    // future risk score
+    futureRiskScore: number;
 }

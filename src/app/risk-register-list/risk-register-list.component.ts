@@ -30,9 +30,7 @@ export class RiskRegisterListComponent implements OnChanges {
   }
 
   deleteRisk(risk: Risk){
-    var hasRole = this.accountService.checkRole(role.Admin)
-      .subscribe(hasRole => 
-      {
+    var hasRole = this.accountService.checkRole(role.Admin).subscribe(hasRole => {
         if(hasRole && confirm(`Are you sure you wish to Delete Risk "${risk.shortDescription}"?`))
         {
           this.riskService.deleteRisk(risk.id)

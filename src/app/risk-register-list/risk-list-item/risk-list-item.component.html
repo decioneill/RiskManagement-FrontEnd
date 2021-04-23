@@ -2,14 +2,18 @@
     <div class="card-body p-1">
         <div class="row justify-content-center p-0 m-1">
             <p class="card-text text-left col border bg-white rounded mb-0">{{simpleRisk.shortDescription}}</p>
-            <div class="card-body col-lg-2 p-0 bg-white border rounded mx-1">
+            <div class="card-body col-lg-2 p-0 bg-success text-white border rounded mx-1">
                 <p class="card-title mb-0 text-center">Inherent Risk Score</p>
                 <h5 class="card-text mb-1 text-center">{{simpleRisk.inherentRiskScore}}</h5> 
             </div> 
-            <div class="card-body col-lg-2 p-0 bg-white border rounded mx-1">
+            <div class="card-body col-lg-2 p-0 bg-info text-white border rounded mx-1">
                 <p class="card-title mb-0 text-center">Residual Risk Score</p>
                 <h5 class="card-text mb-1 text-center">{{simpleRisk.residualRiskScore}}</h5> 
             </div>            
+            <div class="card-body col-lg-2 p-0 bg-dark text-white border rounded mx-1">
+                <p class="card-title mb-0 text-center">Future Risk Score</p>
+                <h5 class="card-text mb-1 text-center">{{simpleRisk.futureRiskScore}}</h5> 
+            </div>           
         </div>
     </div>
 </div>

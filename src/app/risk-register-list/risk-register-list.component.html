@@ -14,13 +14,12 @@
       </div>
     </nav>
     <br/>
-    <div *ngFor="let risk of riskService.risklist | async; let i = index;" class="list-group-item border-0 p-0 bg-light" [queryParams]="{projectid: currentProject.id}">
-      <div class="row">
-        <app-risk-list-item  [routerLink]="['/edit-risk', risk.id]" [simpleRisk]="risk" class="col" style="outline: 0;"></app-risk-list-item>
-        <button *ngIf="user.admin" (click)="deleteRisk(risk)" class="btn btn-sm btn-danger btn-delete col-auto mr-4 my-3" [disabled]="risk.isDeleting">Delete</button>
-      </div>
-      <div style="height: 8px;" class="bg-white">
-        <hr/>
+    <div *ngFor="let risk of riskService.risklist | async; let i = index;" class="list-group-item border-0 p-0">
+      <div class="row border rounded bg-light m-1">
+        <app-risk-list-item  [routerLink]="['/edit-risk', risk.id]" [queryParams]="{projectid: currentProject.id}" [simpleRisk]="risk" class="col" style="outline: 0;"></app-risk-list-item>
+        <button *ngIf="user.admin" (click)="deleteRisk(risk)" class="btn btn-sm align-middle p-0 m-0" style="outline: 0;" [disabled]="risk.isDeleting">
+          <img class="rounded" height="24px" src="../../assets/close.png" />
+        </button>
       </div>
     </div>
   </div>  

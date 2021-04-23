@@ -16,6 +16,10 @@ export class RiskService {
   private riskSubject = new Subject();
   public risk = this.riskSubject.asObservable();
   
+  private private_riskproperties;
+  private riskpropertiesSubject = new Subject();
+  public riskproperties = this.riskpropertiesSubject.asObservable();
+  
   private apiDir = "risk";
 
   public success = false;
@@ -40,17 +44,19 @@ export class RiskService {
     return result
   }
 
-  updateRisk(id: Number, params){
-    if(this.private_risk != null)
-    {
-      var result = this.http.put<Risk>(`${environment.apiUrl}/${this.apiDir}/${id}`, params);
-      result.pipe(first()).subscribe(response => {
-        this.private_risk = response;
-        this.riskSubject.next(this.private_risk[0]);
-      });
-      return result;
-    }
-    return null;
+  getRiskProperties(rid: string)
+  {
+    var result = this.http.get(`${environment.apiUrl}/${this.apiDir}/${rid}/riskproperties`);
+    result.pipe(first())
+    .subscribe(response => {
+      this.private_riskproperties = response;
+      this.riskpropertiesSubject.next(this.private_riskproperties);
+    });
+    return result
+  }
+
+  updateRisk(id: Number, params){    
+    return this.http.put(`${environment.apiUrl}/${this.apiDir}/${id}`, params);
   }
 
   createRisk(pid: Number, params)

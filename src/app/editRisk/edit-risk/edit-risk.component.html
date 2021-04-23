@@ -19,6 +19,67 @@
                             title="Detailed Description of the Risk">Description
                         </h5>
                         <textarea class="form-control w-100" formControlName="description" placeholder="Enter Detailed Description" ></textarea>
+                        <div class="row mx-1">
+                            <div class="row col-auto p-1 m-0 mt-2 bg-success rounded text-white" style="width: fit-content;">
+                                <div class="col-auto">
+                                    <label>Likelihood</label>
+                                    <input type="number" class="form-control w-100" min="1" max="5" 
+                                    formControlName="inherentLikelihood" placeholder="1"
+                                    (change)="getRiskScore(0)"/>        
+                                </div>
+                                <div class="col-auto">
+                                    <label>Impact</label>
+                                    <input type="number" class="form-control w-100" min="1" max="5" 
+                                    formControlName="inherentImpact" placeholder="1"
+                                    (change)="getRiskScore(0)"/>
+                                </div>
+                                <div class="col-auto border rounded">
+                                    <label>Inherent Risk</label>
+                                    <br/>
+                                    <h3 class="text-center">{{inherentRiskScore}}</h3>
+                                </div>
+                            </div>
+                            <div class="mx-2"></div>
+                            <div class="row col-auto p-1 m-0 mt-2 bg-info rounded text-white" style="width: fit-content;">
+                                <div class="col-auto">
+                                    <label>Likelihood</label>
+                                    <input type="number" class="form-control w-100" min="1" max="5" 
+                                    formControlName="residualLikelihood" placeholder="1"
+                                    (change)="getRiskScore(1)"/>        
+                                </div>
+                                <div class="col-auto">
+                                    <label>Impact</label>
+                                    <input type="number" class="form-control w-100" min="1" max="5" 
+                                    formControlName="residualImpact" placeholder="1"
+                                    (change)="getRiskScore(1)"/>
+                                </div>
+                                <div class="col-auto border rounded">
+                                    <label>Residual Risk</label>
+                                    <br/>
+                                    <h3 class="text-center">{{residualRiskScore}}</h3>
+                                </div>
+                            </div>
+                            <div class="mx-2"></div>
+                            <div class="row col-auto p-1 m-0 mt-2 bg-dark rounded text-white" style="width: fit-content;">
+                                <div class="col-auto">
+                                    <label>Likelihood</label>
+                                    <input type="number" class="form-control w-100" min="1" max="5" 
+                                    formControlName="futureLikelihood" placeholder="1"
+                                    (change)="getRiskScore(2)"/>        
+                                </div>
+                                <div class="col-auto">
+                                    <label>Impact</label>
+                                    <input type="number" class="form-control w-100" min="1" max="5" 
+                                    formControlName="futureImpact" placeholder="1"
+                                    (change)="getRiskScore(2)"/>
+                                </div>
+                                <div class="col-auto border rounded">
+                                    <label>Future Risk</label>
+                                    <br/>
+                                    <h3 class="text-center">{{futureRiskScore}}</h3>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <button [disabled]="loading" class="btn btn-primary" type="submit">
@@ -34,7 +95,7 @@
             <h3>Risk Details</h3>
             <hr/>
             <div class="row">
-                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <form [formGroup]="form" class="w-100" (ngSubmit)="onSubmit()">
                     <div class="form-group col px-0">
                         <h5 for="shortDescription" 
                             data-toggle="tooltip"
