@@ -4,6 +4,8 @@ import { CommonModule} from '@angular/common';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { RiskRoutingModule } from './risk-routing.module'
 import { EditRiskComponent } from './edit-risk/edit-risk.component';
+import { MitigationListComponent } from '../mitigation-list/mitigation-list.component';
+import { MitigationListItem } from '../mitigation-list/mitigation-list-item/mitigation-list-item.component';
 
 @NgModule({
     imports: [
@@ -14,7 +16,9 @@ import { EditRiskComponent } from './edit-risk/edit-risk.component';
         FormsModule
     ],
     declarations: [
-        EditRiskComponent
+        EditRiskComponent,
+        MitigationListComponent,
+        MitigationListItem
     ]
 })
 export class RiskModule { }

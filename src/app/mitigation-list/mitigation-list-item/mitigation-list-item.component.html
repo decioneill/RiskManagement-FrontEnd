@@ -1,0 +1,14 @@
+<div>
+    <div class="border rounded p-1">
+        <label class="text-left w-100 px-1">{{mitigation.name}}</label>
+        <label class="border rounded px-1 w-100" style=" max-height: 80px; height: fit-content; overflow: auto;">{{mitigation.description}}</label>
+        <div class="row justify-content-center p-0 m-1">
+            <div class="col p-0 bg-info text-white border rounded mx-1">
+                <p class="card-title mb-0 text-center">{{getStatusName(mitigation.currentStatus)}}</p>
+            </div>            
+            <div class="col p-0 bg-dark text-white border rounded mx-1">
+                <p class="card-title mb-0 text-center">{{mitigation.reviewDate}}</p>
+            </div>           
+        </div>
+    </div>
+</div>

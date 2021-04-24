@@ -5,20 +5,21 @@
             <hr/>
             <div class="row px-3">
                 <form [formGroup]="form" class="w-100" (ngSubmit)="onSubmit()">
-                    <div class="form-group col px-0">
+                    <div class="form-group col px-0">                        
                         <h5 for="shortDescription" 
                             data-toggle="tooltip"
                             data-placement="top" 
                             title="A simplified description of the Risk">Short Description
                         </h5>
                         <input type="text" class="form-control w-100" formControlName="shortDescription" placeholder="Enter Short Description"/>
-
                         <h5 for="description" 
                             data-toggle="tooltip"
                             data-placement="top" 
                             title="Detailed Description of the Risk">Description
-                        </h5>
+                        </h5>                        
                         <textarea class="form-control w-100" formControlName="description" placeholder="Enter Detailed Description" ></textarea>
+
+                        <!-- Risk Scores-->
                         <div class="row mx-1">
                             <div class="row col-auto p-1 m-0 mt-2 bg-success rounded text-white" style="width: fit-content;">
                                 <div class="col-auto">
@@ -33,7 +34,7 @@
                                     formControlName="inherentImpact" placeholder="1"
                                     (change)="getRiskScore(0)"/>
                                 </div>
-                                <div class="col-auto border rounded">
+                                <div class="col-auto border rounded" style="width: 140px;">
                                     <label>Inherent Risk</label>
                                     <br/>
                                     <h3 class="text-center">{{inherentRiskScore}}</h3>
@@ -53,7 +54,7 @@
                                     formControlName="residualImpact" placeholder="1"
                                     (change)="getRiskScore(1)"/>
                                 </div>
-                                <div class="col-auto border rounded">
+                                <div class="col-auto border rounded" style="width: 140px;">
                                     <label>Residual Risk</label>
                                     <br/>
                                     <h3 class="text-center">{{residualRiskScore}}</h3>
@@ -73,7 +74,7 @@
                                     formControlName="futureImpact" placeholder="1"
                                     (change)="getRiskScore(2)"/>
                                 </div>
-                                <div class="col-auto border rounded">
+                                <div class="col-auto border rounded" style="width: 140px;">
                                     <label>Future Risk</label>
                                     <br/>
                                     <h3 class="text-center">{{futureRiskScore}}</h3>
@@ -89,6 +90,9 @@
                 </form>
             </div>
         </div>
+        <!-- Mitigation Measures-->
+        <hr/>
+        <mitigation-list [currentRisk]="risk"></mitigation-list>
     </div>
     <div *ngIf="isAdd">
         <div class="form-group">
