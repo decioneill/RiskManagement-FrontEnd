@@ -1,8 +1,22 @@
 <div class="border rounded bg-danger">
-    <h3 class="mx-2 text-white">Mitigations List</h3>
+    <div class="row my-1">
+        <h3 class="col mx-2 text-white">Mitigations List</h3>
+        <a class="col-auto text-white border my-auto rounded bg-success p-1 mr-4" style="height: fit-content;" [routerLink]="['/edit-mitigation', 0]" [queryParams]="{riskid: currentRisk.id}">New Mitigation</a>
+    </div>
     <div class="list-group px-2">    
         <div *ngFor="let mitigation of mitigationService.mitigationList | async;" class="list-group-item border-0 rounded p-0 mb-2">
-            <mitigation-list-item [routerLink]="['/edit-mitigation', mitigation.id]" [queryParams]="{riskid: currentRisk.id}" [mitigation]="mitigation"></mitigation-list-item>
+            <div class="row">
+                <mitigation-list-item class="col pr-0" [routerLink]="['/edit-mitigation', mitigation.id]" [queryParams]="{riskid: currentRisk.id}" [mitigation]="mitigation"></mitigation-list-item>
+                <button *ngIf="user.admin" (click)="deleteMitigation(mitigation)" class="btn btn-sm mr-3 p-0" style="height: fit-content; outline: 0;" [disabled]="mitigation.isDeleting">
+                    <img class="rounded" height="24px" src="../../assets/close.png" />
+                </button>
+            </div>
+        </div>
+        <div *ngIf="(mitigationService.mitigationList | async)?.length === 0">
+            <div class="bg-white border-0 rounded p-2 mb-2">
+                <h3>There are no associated Mitigations</h3>
+                <a class="text-white border-0 my-auto rounded bg-success p-1 mx-1" [routerLink]="['/edit-mitigation', 0]" [queryParams]="{riskid: currentRisk.id}">Click to add a New Mitigation</a>
+            </div>
         </div>
     </div>
 </div>

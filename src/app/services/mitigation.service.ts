@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Mitigation } from '../models';
 import { Risk } from '../models/risk';
 
 @Injectable({  providedIn: 'root'})
@@ -35,5 +36,19 @@ export class MitigationService {
       this.private_mitigation = response;
       this.mitigationSubject.next(this.private_mitigation);
     });  
+  }
+
+  updateMitigation(mid: string, params){
+    return this.http.put(`${environment.apiUrl}/${this.apiDir}/${mid}`, params);
+  }
+  
+  createMitigation(rid: Number, params)
+  {
+    return this.http.post<Mitigation>(`${environment.apiUrl}/${this.apiDir}/newmitigation/${rid}`, params);
+  }
+
+  deleteMitigationFromRisk(mid: string, rid: string)
+  {
+    return this.http.delete(`${environment.apiUrl}/${this.apiDir}/${mid}/${rid}`);
   }
 }

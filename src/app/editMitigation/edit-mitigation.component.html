@@ -3,21 +3,37 @@
         <div class="form-group">
             <h3>Mitigation Measure Details</h3>
             <hr/>
+            <div class="p-0 bg-info text-white border rounded mx-1 mb-2 p-3">
+                <h5 class="mb-0 text-center">{{getStatusName(status)}}</h5>
+            </div>  
             <div class="row px-3">
                 <form [formGroup]="form" class="w-100" (ngSubmit)="onSubmit()">
-                    <div class="form-group col px-0">                        
+                    <div class="form-group col px-0">    
                         <h5 for="name" 
                             data-toggle="tooltip"
                             data-placement="top" 
                             title="A Name for the Mitigation Measure">Mitigation Measure Name
                         </h5>
-                        <input type="text" class="form-control w-100" formControlName="name" placeholder="Enter Mitigation Measure Name"/>
+                        <input type="text" class="form-control w-100" formControlName="name" placeholder="Enter Mitigation Measure Name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />                        
+                        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                            <div *ngIf="f.name.errors.required">Name is required</div>
+                            <div *ngIf="f.name.errors.minlength">Name must be at least 6 characters</div>
+                        </div>               
                         <h5 for="description" 
                             data-toggle="tooltip"
                             data-placement="top" 
                             title="Detailed Description of the Mitigation Measure">Description
                         </h5>                        
                         <textarea class="form-control w-100" formControlName="description" placeholder="Enter Detailed Description" ></textarea>
+                        <h5 for="reviewDate" 
+                            data-toggle="tooltip"
+                            data-placement="top" 
+                            title="Date to review the Mitigation Measure">Review Date & Time
+                        </h5>
+                        <input type="datetime-local" class="form-control w-100" formControlName="reviewDate" [ngClass]="{ 'is-invalid': submitted && f.reviewDate.errors }"/>
+                        <div *ngIf="submitted && f.reviewDate.errors" class="invalid-feedback">
+                            <div *ngIf="f.reviewDate.errors.required">Date and Time is required</div>
+                        </div>   
                     </div>
                     <div class="form-group">
                         <button [disabled]="loading" class="btn btn-primary" type="submit">
@@ -32,21 +48,37 @@
         <div class="form-group">
             <h3>Mitigation Measure Details</h3>
             <hr/>
+            <div class="p-0 bg-info text-white border rounded mx-1 mb-2">
+                <h5 class="mb-0 text-center">{{getStatusName(status)}}</h5>
+            </div>    
             <div class="row px-3">
                 <form [formGroup]="form" class="w-100" (ngSubmit)="onSubmit()">
-                    <div class="form-group col px-0">                        
+                    <div class="form-group col px-0">    
                         <h5 for="name" 
                             data-toggle="tooltip"
                             data-placement="top" 
                             title="A Name for the Mitigation Measure">Mitigation Measure Name
                         </h5>
-                        <input type="text" class="form-control w-100" formControlName="name" placeholder="Enter Mitigation Measure Name"/>
+                        <input type="text" class="form-control w-100" formControlName="name" placeholder="Enter Mitigation Measure Name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />                        
+                        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                            <div *ngIf="f.name.errors.minlength">Name must be at least 6 characters</div>
+                            <div *ngIf="f.name.errors.required">Name is required</div>
+                        </div>               
                         <h5 for="description" 
                             data-toggle="tooltip"
                             data-placement="top" 
                             title="Detailed Description of the Mitigation Measure">Description
                         </h5>                        
                         <textarea class="form-control w-100" formControlName="description" placeholder="Enter Detailed Description" ></textarea>
+                        <h5 for="reviewDate" 
+                            data-toggle="tooltip"
+                            data-placement="top" 
+                            title="Date to review the Mitigation Measure">Review Date & Time
+                        </h5>
+                        <input type="datetime-local" class="form-control w-100" formControlName="reviewDate" [ngClass]="{ 'is-invalid': submitted && f.reviewDate.errors }"/>
+                        <div *ngIf="submitted && f.reviewDate.errors" class="invalid-feedback">
+                            <div *ngIf="f.reviewDate.errors.required">Date and Time is required</div>
+                        </div>   
                     </div>
                     <div class="form-group">
                         <button [disabled]="loading" class="btn btn-primary" type="submit">

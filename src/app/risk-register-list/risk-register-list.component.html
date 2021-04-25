@@ -8,8 +8,8 @@
     <div *ngIf="(riskService.risklist | async)?.length === 0">
       <h3>There are no outstanding Risks</h3>
     </div>
-    <nav class="navbar navbar-expand mr-auto bg-info w-100 p-0 border rounded" >
-      <div *ngIf="user.admin" class="navbar-nav">
+    <nav *ngIf="user.riskManager" class="navbar navbar-expand mr-auto bg-info w-100 p-0 border rounded" >
+      <div class="navbar-nav">
         <a class="nav-item text-white nav-link mx-1" [routerLink]="['/edit-risk', 0]" [queryParams]="{projectid: currentProject.id}">New Risk</a>
       </div>
     </nav>
@@ -17,7 +17,7 @@
     <div *ngFor="let risk of riskService.risklist | async; let i = index;" class="list-group-item border-0 p-0">
       <div class="row border rounded bg-light m-1">
         <app-risk-list-item  [routerLink]="['/edit-risk', risk.id]" [queryParams]="{projectid: currentProject.id}" [simpleRisk]="risk" class="col p-0" style="outline: 0;"></app-risk-list-item>
-        <button *ngIf="user.admin" (click)="deleteRisk(risk)" class="btn btn-sm align-middle p-0 pr-2 m-0" style="outline: 0;" [disabled]="risk.isDeleting">
+        <button *ngIf="user.admin" (click)="deleteRisk(risk)" class="btn btn-sm align-middle p-1 m-0" style="height: fit-content; outline: 0;" [disabled]="risk.isDeleting">
           <img class="rounded" height="24px" src="../../assets/close.png" />
         </button>
       </div>

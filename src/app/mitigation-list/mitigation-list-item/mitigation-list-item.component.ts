@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Mitigation } from 'src/app/models';
+import { Mitigation, MitigationStatusType } from 'src/app/models';
 
 @Component({
   selector: 'mitigation-list-item',
@@ -17,12 +17,10 @@ export class MitigationListItem implements OnInit {
       var type = MitigationStatusType[i];
       return type
   }
-}
 
-enum MitigationStatusType {
-    "Under Consideration" = 0,
-    "Accepted" = 1,
-    "Ongoing" = 2,
-    "To Be Reviewed" = 3,
-    "Closed" = 4
+  getFormattedDate(dt: any){
+    var date = new Date(dt)
+    var formatted = date.toLocaleString();
+    return formatted
+  }
 }

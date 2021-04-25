@@ -1,14 +1,20 @@
 <div>
     <div class="border rounded p-1">
         <label class="text-left w-100 px-1">{{mitigation.name}}</label>
-        <label class="border rounded px-1 w-100" style=" max-height: 80px; height: fit-content; overflow: auto;">{{mitigation.description}}</label>
-        <div class="row justify-content-center p-0 m-1">
-            <div class="col p-0 bg-info text-white border rounded mx-1">
-                <p class="card-title mb-0 text-center">{{getStatusName(mitigation.currentStatus)}}</p>
-            </div>            
-            <div class="col p-0 bg-dark text-white border rounded mx-1">
-                <p class="card-title mb-0 text-center">{{mitigation.reviewDate}}</p>
-            </div>           
+        <label class="border rounded px-1 w-100  mb-0" style=" max-height: 80px; height: fit-content; overflow: auto;">{{mitigation.description}}</label>
+        <div class="row justify-content-center p-0 m-1 mb-0" style="max-width: 800px;">
+            <div class="col p-0">
+                <p class="text-center pb-0 mb-0" style="font-size: large;">Current Status</p>
+                <div class="bg-info text-white border rounded mx-1">
+                    <p class="card-title mb-0 text-center">{{getStatusName(mitigation.currentStatus)}}</p>
+                </div>  
+            </div>    
+            <div class="col p-0 ">      
+                <p class="text-center pb-0 mb-0" style="font-size: large;">Next Review Date</p>
+                <div class="bg-dark text-white border rounded mx-1">
+                    <p class="card-title mb-0 text-center">{{getFormattedDate(mitigation.reviewDate)}}</p>
+                </div> 
+            </div>          
         </div>
     </div>
 </div>
