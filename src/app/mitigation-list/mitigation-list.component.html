@@ -2,7 +2,7 @@
     <h3 class="mx-2 text-white">Mitigations List</h3>
     <div class="list-group px-2">    
         <div *ngFor="let mitigation of mitigationService.mitigationList | async;" class="list-group-item border-0 rounded p-0 mb-2">
-            <mitigation-list-item [mitigation]="mitigation"></mitigation-list-item>
+            <mitigation-list-item [routerLink]="['/edit-mitigation', mitigation.id]" [queryParams]="{riskid: currentRisk.id}" [mitigation]="mitigation"></mitigation-list-item>
         </div>
     </div>
 </div>

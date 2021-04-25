@@ -29,4 +29,11 @@ export class MitigationService {
         this.mitigationListSubject.next(this.private_mitigationList);
     });    
   }
+
+  getMitigationById(mid: string){
+    return this.http.get(`${environment.apiUrl}/${this.apiDir}/${mid}`).subscribe(response => {
+      this.private_mitigation = response;
+      this.mitigationSubject.next(this.private_mitigation);
+    });  
+  }
 }

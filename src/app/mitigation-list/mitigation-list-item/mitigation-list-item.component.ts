@@ -8,7 +8,6 @@ import { Mitigation } from 'src/app/models';
 export class MitigationListItem implements OnInit {
   @Input() mitigation: Mitigation;
 
-
   constructor() { }
 
   ngOnInit(): void {
@@ -20,11 +19,10 @@ export class MitigationListItem implements OnInit {
   }
 }
 
-
 enum MitigationStatusType {
     "Under Consideration" = 0,
     "Accepted" = 1,
-    "Ongoing",
-    "To Be Reviewed",
-    "Closed"
+    "Ongoing" = 2,
+    "To Be Reviewed" = 3,
+    "Closed" = 4
 }
