@@ -2,13 +2,13 @@
     <h1 class="text-center">Add/Edit Users</h1>
     <table class="table table-striped">    
         <tr>
-            <th style="width: 60%">Email</th>
+            <th style="width: 60%">Username</th>
             <th style="width: 15%" class="text-center">Risk Manager</th>
             <th *ngIf="user.admin" class="text-center" style="width: 15%">Admin</th>
             <th style="width: 10%"></th>
         </tr>
         <tr *ngFor="let listuser of users">
-            <td>{{listuser.email}}</td>
+            <td>{{listuser.username}}</td>
             <td class="text-center">{{listuser.riskManager}}</td>
             <td *ngIf="user.admin" class="text-center">{{listuser.admin}}</td>
             <td *ngIf="user.admin" style="white-space: nowrap">

@@ -4,15 +4,15 @@
 <div *ngIf="currentProject.id">
   <h2 class="text-center col">{{currentProject.name}}</h2>
   <hr style="color: rgba(0,0,0,.125);" class="mb-0"/>
-  <div class="list-group p-2">
-    <div *ngIf="(riskService.risklist | async)?.length === 0">
-      <h3>There are no outstanding Risks</h3>
-    </div>
-    <nav *ngIf="user.riskManager" class="navbar navbar-expand mr-auto bg-info w-100 p-0 border rounded" >
+  <div class="list-group p-2"> 
+    <nav *ngIf="user.admin" class="navbar navbar-expand mr-auto bg-info w-100 p-0 border rounded" >
       <div class="navbar-nav">
         <a class="nav-item text-white nav-link mx-1" [routerLink]="['/edit-risk', 0]" [queryParams]="{projectid: currentProject.id}">New Risk</a>
       </div>
     </nav>
+    <div *ngIf="(riskService.risklist | async)?.length === 0">
+      <h3>There are no outstanding Risks</h3>
+    </div>
     <br/>
     <div *ngFor="let risk of riskService.risklist | async; let i = index;" class="list-group-item border-0 p-0">
       <div class="row border rounded bg-light m-1">

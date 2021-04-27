@@ -43,7 +43,7 @@
                                 <div class="modal-body">
                                     <label for="selectedUsers">Select Users</label>
                                     <ng-select [multiple]="true" [(ngModel)]="selectedUsers">
-                                        <ng-option *ngFor="let user of nonMembers" [value]="user.id" >{{user.email}}</ng-option>
+                                        <ng-option *ngFor="let user of nonMembers" [value]="user.id" >{{user.username}}</ng-option>
                                     </ng-select>
                                 </div>
                                 <div class="modal-footer">

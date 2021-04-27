@@ -1,6 +1,6 @@
 <div class="card">
     <div class="container">
-        <div class="card-header "><h4>Welcome {{user.email}}</h4><p>Not {{user.email}}? <a (click)="logout()">Click to Logout</a></p></div>
+        <div class="card-header "><h4>Welcome {{user.username}}</h4><p>Not {{user.username}}? <a (click)="logout()">Click to Logout</a></p></div>
         <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-secondary" routerLink="/risk-register" >Risk Registry</button>
             <button *ngIf="user.riskManager || user.admin" type="button" class="btn btn-dark" routerLink="/edit-users">User Management</button>

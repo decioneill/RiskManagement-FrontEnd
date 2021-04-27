@@ -32,6 +32,7 @@ export class AddEditComponent implements OnInit {
 
         this.form = this.formBuilder.group({
             email: ['', Validators.required],
+            username:['', [Validators.required, Validators.minLength(6)]],
             riskManager:[false],
             admin: [false, ],
             password: ['', passwordValidators]
@@ -40,7 +41,9 @@ export class AddEditComponent implements OnInit {
         if (!this.isAddMode) {
             this.accountService.getById(this.id)
                 .pipe(first())
-                .subscribe(x => this.form.patchValue(x));
+                .subscribe(x => {
+                    this.form.patchValue(x)
+                });
         }
     }
 

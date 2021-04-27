@@ -4,6 +4,9 @@ export class User {
     // Unique identifier
     id: number;
 
+    // Username
+    username: string;
+
     // Email Address
     email: string;
 
