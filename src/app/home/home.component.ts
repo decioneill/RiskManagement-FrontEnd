@@ -10,4 +10,8 @@ export class HomeComponent {
     constructor(public accountService: AccountService, private router: Router) {        
         this.user = this.accountService.userValue;
     }
+    
+    logout() {
+        this.accountService.logout();
+    }
 }
