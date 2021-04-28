@@ -1,11 +1,19 @@
 <div class="card">
     <div class="container">
-        <div class="card-header "><h4>Welcome {{user.username}}</h4><p>Not {{user.username}}? <a (click)="logout()">Click to Logout</a></p></div>
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-secondary" routerLink="/risk-register" >Risk Registry</button>
-            <button *ngIf="user.riskManager || user.admin" type="button" class="btn btn-secondary" routerLink="/edit-users">User Management</button>
-            <button *ngIf="user.riskManager || user.admin" routerLink="/edit-projects" type="button" class="btn btn-secondary">Projects</button>
-            <button type="button" class="btn btn-secondary" disabled>Risk Metrics</button>
+        <br/>
+        <div class="p-2">
+            <h4>Welcome {{user.username}}</h4>
+            <p>Not {{user.username}}? <a (click)="logout()">Click to Logout</a></p>
+            <br/>
+            <div class="btn-group btn-group-justified w-100" style="height: 100px;" role="group">
+                <button type="button" class="btn btn-default btn-secondary rounded" style="width: 200px;" routerLink="/risk-register" >Risk Registry</button>
+                <div class="mx-1"></div>
+                <button *ngIf="user.riskManager || user.admin" style="width: 200px;" type="button" class="btn btn-secondary rounded" routerLink="/edit-users">User Management</button>
+                <div class="mx-1"></div>
+                <button *ngIf="user.riskManager || user.admin" style="width: 200px;" routerLink="/edit-projects" type="button" class="btn btn-secondary rounded">Projects</button>
+                <div class="mx-1"></div>
+                <button type="button" class="btn btn-secondary rounded" style="width: 200px;" routerLink="/metrics" routerLinkActive="active">Risk Metrics</button>
+            </div>
         </div>
     </div>
 </div>

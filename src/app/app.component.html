@@ -3,6 +3,7 @@
     <div class="navbar-nav">
         <a class="nav-item nav-link mx-1" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
         <a class="nav-item nav-link mx-1" routerLink="/risk-register" routerLinkActive="active">Risk Registry</a>
+        <a class="nav-item nav-link mx-1" routerLink="/metrics" routerLinkActive="active">Risk Metrics</a>
         <a *ngIf="user.riskManager || user.admin" class="nav-item nav-link mx-1" routerLink="/edit-users" routerLinkActive="active">Users</a>
         <a *ngIf="user.riskManager || user.admin" class="nav-item nav-link mx-1" routerLink="/edit-projects" routerLinkActive="active">Projects</a>
     </div>

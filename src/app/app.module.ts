@@ -10,8 +10,7 @@ import { HomeComponent } from './home';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import * as $ from 'jquery';import { AlertService } from './services';
-;
-;
+
 
 @NgModule({
     imports: [

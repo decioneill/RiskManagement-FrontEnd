@@ -1,0 +1,15 @@
+﻿<div class="container px-0">
+  <h1 class="text-center">Risk Metrics</h1>
+  <hr/>
+    
+  <div class="row mx-1 p-1 text-center border rounded bg-white h-100">
+      <div class="list-group pr-1" id="list-tab" role="tablist" style="max-width: 300px; overflow-x: hidden;">
+        <h6 class="pt-3" style="height: 50px;">Projects</h6>
+        <a [ngClass]="{'active': project === selectedProject}" 
+            *ngFor="let project of projectService.projects | async; let i = index;" 
+            [ngValue]="project" class="list-group-item list-group-item-action" 
+            data-bs-toggle="list" role="tab" (click)="onTabClick(project)">{{project.name}}</a>
+      </div>
+      <metric-list class="col v-divide-left p-0" style="min-height: 800px;" id="riskRegisterList" [currentProject]="selectedProject"></metric-list>
+  </div>
+</div>

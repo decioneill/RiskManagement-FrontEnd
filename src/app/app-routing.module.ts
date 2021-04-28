@@ -9,6 +9,7 @@ const projectsModule = () => import('./projectManagement/projects.module').then(
 const riskRegister = () => import('./riskRegister/riskRegister.module').then(x => x.RiskRegisterModule);
 const riskModule = () => import('./editRisk/risk.module').then(x => x.RiskModule);
 const mitigationModule = () => import('./editMitigation/mitigation.module').then(x => x.MitigationModule);
+const metricsModule = () => import('./riskmetrics/metrics.module').then(x => x.MetricsModule);
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -17,7 +18,8 @@ const routes: Routes = [
     { path: 'risk-register', loadChildren: riskRegister, canActivate: [AuthGuard]},
     { path: 'account', loadChildren: accountModule },
     { path: 'edit-risk', loadChildren:  riskModule, canActivate: [AuthGuard]},
-    { path: 'edit-mitigation', loadChildren:  mitigationModule, canActivate: [AuthGuard]}
+    { path: 'edit-mitigation', loadChildren:  mitigationModule, canActivate: [AuthGuard]},
+    { path: 'metrics', loadChildren: metricsModule, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

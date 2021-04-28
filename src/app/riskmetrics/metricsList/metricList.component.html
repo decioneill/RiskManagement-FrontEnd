@@ -1,0 +1,18 @@
+<div *ngIf="!currentProject.id">
+    <h3>Please Select a Project</h3>
+</div>
+<div *ngIf="currentProject.id">
+    <h2 class="text-center col">{{currentProject.name}}</h2>
+    <hr style="color: rgba(0,0,0,.125);" class="mb-0"/>
+    <div class="list-group p-2">
+        <div *ngIf="(riskService.risklist | async)?.length === 0">
+            <h3>There are no Risks to perform Metrics On</h3>
+        </div>
+        <div *ngIf="(riskService.risklist | async)?.length > 0" class="list-group-item border-0 p-0">
+            <div id="irchart" style="width: 400px;">
+                <h5>Donut Chart showing Percentages of Inherent Risk Scores</h5>
+                <donut-chart [ChartOptions]="ChartOptions"></donut-chart>
+            </div>
+        </div>
+    </div>  
+</div>
