@@ -11,7 +11,7 @@ export class UserListComponent implements OnInit {
     constructor(private accountService: AccountService) {}
     ngOnInit() {
         this.user = this.accountService.userValue
-        this.accountService.getAll().subscribe(users => this.users = users);  
+        this.accountService.getAll(this.user.id).subscribe(users => this.users = users);  
     }
 
     deleteUser(id: string){

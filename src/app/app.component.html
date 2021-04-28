@@ -4,7 +4,7 @@
         <a class="nav-item nav-link mx-1" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
         <a class="nav-item nav-link mx-1" routerLink="/risk-register" routerLinkActive="active">Risk Registry</a>
         <a *ngIf="user.riskManager || user.admin" class="nav-item nav-link mx-1" routerLink="/edit-users" routerLinkActive="active">Users</a>
-        <a *ngIf="user.admin" class="nav-item nav-link mx-1" routerLink="/edit-projects" routerLinkActive="active">Projects</a>
+        <a *ngIf="user.riskManager || user.admin" class="nav-item nav-link mx-1" routerLink="/edit-projects" routerLinkActive="active">Projects</a>
     </div>
     <button type="button" class="btn btn-danger ml-auto" (click)="logout()">Logout</button>
 </nav>

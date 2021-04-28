@@ -13,7 +13,7 @@ const mitigationModule = () => import('./editMitigation/mitigation.module').then
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'edit-users', loadChildren: usersModule, canActivate: [RiskManagerAuth]},    
-    { path: 'edit-projects', loadChildren: projectsModule, canActivate: [AdminAuthGuard]},
+    { path: 'edit-projects', loadChildren: projectsModule, canActivate: [RiskManagerAuth]},
     { path: 'risk-register', loadChildren: riskRegister, canActivate: [AuthGuard]},
     { path: 'account', loadChildren: accountModule },
     { path: 'edit-risk', loadChildren:  riskModule, canActivate: [AuthGuard]},

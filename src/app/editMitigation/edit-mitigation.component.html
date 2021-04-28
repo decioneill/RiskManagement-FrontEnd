@@ -4,7 +4,7 @@
             <h3>Mitigation Measure Details</h3>
             <hr/>
             <div class="p-0 bg-info text-white border rounded mx-1 mb-2 p-3">
-                <h5 class="mb-0 text-center">{{getStatusName(status)}}</h5>
+                <h5 (click)="changeStatus(mitigation)" class="mb-0 text-center">{{getStatusName(status)}}</h5>
             </div>  
             <div class="row px-3">
                 <form [formGroup]="form" class="w-100" (ngSubmit)="onSubmit()">

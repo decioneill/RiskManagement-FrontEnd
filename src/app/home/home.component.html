@@ -3,8 +3,8 @@
         <div class="card-header "><h4>Welcome {{user.username}}</h4><p>Not {{user.username}}? <a (click)="logout()">Click to Logout</a></p></div>
         <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-secondary" routerLink="/risk-register" >Risk Registry</button>
-            <button *ngIf="user.riskManager || user.admin" type="button" class="btn btn-dark" routerLink="/edit-users">User Management</button>
-            <button *ngIf="user.admin" routerLink="/edit-projects" type="button" class="btn btn-secondary">Projects</button>
+            <button *ngIf="user.riskManager || user.admin" type="button" class="btn btn-secondary" routerLink="/edit-users">User Management</button>
+            <button *ngIf="user.riskManager || user.admin" routerLink="/edit-projects" type="button" class="btn btn-secondary">Projects</button>
             <button type="button" class="btn btn-secondary" disabled>Risk Metrics</button>
         </div>
     </div>

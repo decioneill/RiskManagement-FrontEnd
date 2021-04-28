@@ -25,7 +25,7 @@ export class ProjectListComponent implements OnInit {
         this.user = this.accountService.userValue
         this.form = this.formBuilder.group({
             name: ['', Validators.required]});
-        this.projectService.getAll().subscribe(projects => this.projects = projects);  
+        this.projectService.getAll(this.user).subscribe(projects => this.projects = projects);  
     }
 
     // create alias
@@ -49,7 +49,7 @@ export class ProjectListComponent implements OnInit {
                     .subscribe({
                         next: () => {
                             this.alertService.success('Add successful',{ autoClose: true});
-                            this.projectService.getAll().subscribe(projects => this.projects = projects);  
+                            this.projectService.getAll(this.user).subscribe(projects => this.projects = projects);  
                             this.form.reset();
                         },
                         error: error => {
@@ -103,7 +103,7 @@ export class ProjectListComponent implements OnInit {
 
     addTeamMembers(pid: string)
     {
-        var hasRole = this.accountService.checkRole(role.Admin)
+        var hasRole = this.accountService.checkRole(role.RiskManager)
         .subscribe(hasRole => 
         {
             if(hasRole)
@@ -114,7 +114,7 @@ export class ProjectListComponent implements OnInit {
                     next: () => {
                         this.alertService.success('Added Team Members successfully',{ autoClose: true});
                         this.selectedUsers = [];
-                        this.projectService.getAll().subscribe(projects => this.projects = projects);
+                        this.projectService.getAll(this.user).subscribe(projects => this.projects = projects);
                     },
                     error: error => {
                         this.alertService.error(error,{ autoClose: true});
@@ -131,7 +131,7 @@ export class ProjectListComponent implements OnInit {
     }
 
     promote(pid: string, user: any, project: Project){
-        var hasRole = this.accountService.checkRole(role.Admin)
+        var hasRole = this.accountService.checkRole(role.RiskManager)
         .subscribe(hasRole => 
         {
             if(hasRole)

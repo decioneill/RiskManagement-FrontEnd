@@ -41,8 +41,8 @@ export class AccountService {
         return this.http.post(`${environment.apiUrl}/user/register`, user);
     }
 
-    getAll() {
-        var list = this.http.get<User[]>(`${environment.apiUrl}/user`)
+    getAll(userid: number) {
+        var list = this.http.get<User[]>(`${environment.apiUrl}/user?userid=${userid}`)
         return list;
     }
 

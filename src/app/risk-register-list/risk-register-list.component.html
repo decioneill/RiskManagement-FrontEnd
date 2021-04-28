@@ -5,7 +5,7 @@
   <h2 class="text-center col">{{currentProject.name}}</h2>
   <hr style="color: rgba(0,0,0,.125);" class="mb-0"/>
   <div class="list-group p-2"> 
-    <nav *ngIf="user.admin" class="navbar navbar-expand mr-auto bg-info w-100 p-0 border rounded" >
+    <nav *ngIf="user.riskManager || user.admin" class="navbar navbar-expand mr-auto bg-info w-100 p-0 border rounded" >
       <div class="navbar-nav">
         <a class="nav-item text-white nav-link mx-1" [routerLink]="['/edit-risk', 0]" [queryParams]="{projectid: currentProject.id}">New Risk</a>
       </div>
