@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home';
-import { AdminAuthGuard, AuthGuard, RiskManagerAuth } from './helpers';
+import { AuthGuard, RiskManagerAuth } from './helpers';
 
 const accountModule = () => import('./account/account.module').then(x => x.AccountModule);
 const usersModule = () => import('./userManagement/users.module').then(x => x.UsersModule);

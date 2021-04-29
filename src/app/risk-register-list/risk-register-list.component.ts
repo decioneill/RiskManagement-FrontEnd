@@ -8,8 +8,7 @@ import { AccountService, AlertService, RiskService } from '../services';
 
 @Component({
   selector: 'app-risk-register-list',
-  templateUrl: './risk-register-list.component.html',
-  styleUrls: ['./risk-register-list.component.css']
+  templateUrl: './risk-register-list.component.html'
 })
 export class RiskRegisterListComponent implements OnChanges {
   @Input() currentProject: Project;

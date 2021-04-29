@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { LayoutComponent } from '../layout.component';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard, RiskManagerAuth } from '../helpers';
+import { RiskManagerAuth } from '../helpers';
 import { EditRiskComponent } from './edit-risk/edit-risk.component';
 
 const routes: Routes = [

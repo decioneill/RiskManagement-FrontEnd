@@ -8,8 +8,7 @@ import { Riskproperty } from 'src/app/models';
 
 @Component({
   selector: 'edit-risk-pane',
-  templateUrl: 'edit-risk.component.html',
-  styleUrls: ['edit-risk.component.css']
+  templateUrl: 'edit-risk.component.html'
 })
 export class EditRiskComponent implements OnInit {
   form: FormGroup;

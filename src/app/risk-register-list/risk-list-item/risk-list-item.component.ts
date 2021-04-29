@@ -3,8 +3,7 @@ import { SimpleRisk } from 'src/app/models';
 
 @Component({
   selector: 'app-risk-list-item',
-  templateUrl: './risk-list-item.component.html',
-  styleUrls: ['./risk-list-item.component.css']
+  templateUrl: './risk-list-item.component.html'
 })
 export class RiskListItemComponent implements OnInit {
   @Input() simpleRisk: SimpleRisk;
