@@ -49,6 +49,7 @@ export class EditRiskComponent implements OnInit {
         futureRiskScore:[1,]
     });
     if(!this.isAdd){
+      // if not new risk, patch details.
       this.riskService.getRiskById(this.id.toString())
       .pipe(first())
       .subscribe(x => this.form.patchValue(x[0]));  
@@ -61,6 +62,7 @@ export class EditRiskComponent implements OnInit {
     if (this.form.valid) {
       this.loading = true;
       var result;
+      // if existing risk, update, else create new
       if(!this.isAdd) {
         this.riskService.updateRisk(this.id, this.form.value)
         .subscribe(       
@@ -80,11 +82,13 @@ export class EditRiskComponent implements OnInit {
             this.alertService.error(error, { autoClose: true})}
         )
       }
+      // finally, refresh risk and properties.
       this.riskService.getRiskById(this.id.toString()).subscribe(() => this.getRiskProperties()).unsubscribe();
       this.loading = false;
     }
   }
   
+  // get risk properties and patch to form
   getRiskProperties(){    
     this.riskService.getRiskProperties(this.id.toString()).subscribe().unsubscribe();
     this.riskService.riskproperties.subscribe((x: Riskproperty[]) => {
@@ -104,10 +108,12 @@ export class EditRiskComponent implements OnInit {
     })
   }
 
+  // return to last location.
   goBack(){
     this.location.back()
   }
 
+  // calculate risk score and patch to risk
   getRiskScore(i: number, all = false){
     if(all){
       i = 0;

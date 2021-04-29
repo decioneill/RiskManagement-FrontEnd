@@ -39,6 +39,7 @@ export class EditMitigationComponent implements OnInit {
         currentStatus:['0',]
     });
     if(!this.isAdd){
+      // if not new mitigation, patch info to form
       this.mitigationService.getMitigationById(this.id.toString())
       this.mitigationService.mitigation.subscribe(x => {
         this.form.patchValue(x)
@@ -97,6 +98,7 @@ export class EditMitigationComponent implements OnInit {
   changeStatus(mitigation: Mitigation){
     var result = false;
     var oldStatus = mitigation.currentStatus;
+    // Switch displays relevant message for user to consider before proceeding.
     switch(mitigation.currentStatus){
       case MitigationStatusType['Under Consideration']:{
         if(confirm(`Approve Mitigation?`)){
@@ -114,7 +116,7 @@ export class EditMitigationComponent implements OnInit {
         }
         break;
       }
-      case MitigationStatusType['To Be Reviewed']:{}
+      case MitigationStatusType['To Be Reviewed']:{} // will behave as ongoing
       case MitigationStatusType['Ongoing']:{
         if(confirm(`Is Mitigation to be Closed?`)){
           mitigation.currentStatus = MitigationStatusType.Closed
@@ -133,6 +135,7 @@ export class EditMitigationComponent implements OnInit {
       }
     }
     if(!this.onSubmit()){
+      //if error on submission, reset to original status.
       mitigation.currentStatus = oldStatus
       this.status = mitigation.currentStatus
       this.form.controls['currentStatus'].patchValue(this.status.toString())

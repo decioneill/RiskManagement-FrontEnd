@@ -23,11 +23,13 @@ export class RiskRegisterListComponent implements OnChanges {
     this.currentProject = new Project()
   }
   
+  // when project is selected, get list of risks and populate risk-list
   ngOnChanges(changes: SimpleChanges) {
     this.currentProject = changes.currentProject.currentValue;
     this.riskService.getSimpleRisksByUserId(this.currentProject.id.toString(), this.user.id.toString())
   }
 
+  // removes risk from project
   deleteRisk(risk: Risk){
     var hasRole = this.accountService.checkRole(role.Admin).subscribe(hasRole => {
         if(hasRole && confirm(`Are you sure you wish to Delete Risk "${risk.shortDescription}"?`))

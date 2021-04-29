@@ -13,11 +13,13 @@ export class MitigationListItem implements OnInit {
   ngOnInit(): void {
   }
 
+  // return type name of enum value
   getStatusName(i: number) {
       var type = MitigationStatusType[i];
       return type
   }
 
+  // return formatted date from isodate
   getFormattedDate(dt: any){
     var date = new Date(dt)
     var formatted = date.toLocaleString();

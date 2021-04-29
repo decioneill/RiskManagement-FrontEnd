@@ -25,7 +25,7 @@ export class MitigationListComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
   }
 
-  
+  // delete mitigation, if exists in another risk, only link to risk deleted.
   deleteMitigation(mitigation: Mitigation){
     var hasRole = this.accountService.checkRole(role.Admin).subscribe(hasRole => {
         if(hasRole && confirm(`Are you sure you wish to remove Mitigation "${mitigation.name}" from risk "${this.currentRisk.shortDescription}"?`))

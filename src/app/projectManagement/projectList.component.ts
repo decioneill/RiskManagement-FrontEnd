@@ -31,10 +31,12 @@ export class ProjectListComponent implements OnInit {
     // create alias
     get f() { return this.form.controls; }
 
+    // returns list of users that can be added (not already added)
     getNonMembers(pid: string){
         this.projectService.getNonMembers(pid).subscribe(nonMembers => this.nonMembers = nonMembers);
     }
 
+    // creates a new project
     addProject(){
         this.submitted = false;
         if (this.form.valid) {
@@ -67,6 +69,7 @@ export class ProjectListComponent implements OnInit {
         }
     }
 
+    // removes project
     deleteProject(project: any)
     {
         var pid = project.id;
@@ -101,6 +104,7 @@ export class ProjectListComponent implements OnInit {
         });
     }
 
+    // adds list of user ids as team members on project.
     addTeamMembers(pid: string)
     {
         var hasRole = this.accountService.checkRole(role.RiskManager)
@@ -130,6 +134,7 @@ export class ProjectListComponent implements OnInit {
         });
     }
 
+    // promotes or demotes target user as team leader. 
     promote(pid: string, user: any, project: Project){
         var hasRole = this.accountService.checkRole(role.RiskManager)
         .subscribe(hasRole => 
@@ -167,6 +172,7 @@ export class ProjectListComponent implements OnInit {
         });
     }
 
+    // removes selcted user from team.
     removeTeamMember(project: any, user: any){
         var pid, uid: string;
         uid = user.userId;
